@@ -1,3 +1,4 @@
+package gamePackage;
 /**
  * @author Indelisio
  *
