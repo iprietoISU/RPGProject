@@ -20,7 +20,6 @@ public class Controller {
 
     @FXML
     private Canvas mainCanvasFx;
-    package gamePackage;
     
     private GraphicsContext screen;
     private GameLoop gameLoop;
