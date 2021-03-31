@@ -27,3 +27,4 @@ hs_err_pid*
 .vscode/launch.json
 .vscode/settings.json
 bin/gamePackage/appStructure.fxml
+.DS_Store
