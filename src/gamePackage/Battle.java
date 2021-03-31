@@ -3,9 +3,10 @@ package gamePackage;
 public class Battle {
 	private Party blufor;
 	private Party opfor;
-	private GameCharacter currCharacter; //Get java to keep a memory space open, save just that much more time. 
+	private BattleCharacter currCharacter; //Get java to keep a memory space open, save just that much more time. 
 	int u;
-	boolean wl;
+	boolean won = false;
+	boolean lost = false;
 	
 	boolean optionConfirmed;
 	
@@ -23,25 +24,38 @@ public class Battle {
 	private void checkWL() {
 		for(u = 0; u < blufor.getCharactersInParty(); u++) {
 			if(blufor.getCharacter(u).getHealth() > 0) {
-				wl = true;
+				loss = true;
 				break;
 			}
 		}
 		
 		if(wl) {
-			//Game Over
+			return;
 		}
 		
 		for(u = 0; u < opfor.getCharactersInParty(); u++) {
 			if(opfor.getCharacter(u).getHealth() > 0) {
-				wl = true;
+				won = true;
 				break;
 			}
 		}
-		
-		if(wl) {
-			//Win!
-		}
-		
 	}
+
+	public Party getBlufor() {
+		return blufor;
+	}
+
+
+	public Party getOpfor() {
+		return opfor;
+	}
+
+	public boolean didWin(){
+		return won;
+	}
+
+	public boolean isOver(){
+		return won || lost;
+	}
+
 }

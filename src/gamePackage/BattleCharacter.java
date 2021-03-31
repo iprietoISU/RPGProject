@@ -3,7 +3,7 @@ package gamePackage;
  * @author Indelisio
  *
  */
-public class GameCharacter { //Maybe make a class
+public abstract class BattleCharacter { //Maybe make a class
 	private String spriteName; //Probably no animations for the time being, except for translations.
 	private Party charactersParty;
 	private Battle currentBattle;
@@ -14,6 +14,8 @@ public class GameCharacter { //Maybe make a class
 	private int move2;
 	private int move3;
 	private int move4;
+
+	//TODO
 	
 	public void setParty(Party prty) {
 		charactersParty = prty;
@@ -31,12 +33,19 @@ public class GameCharacter { //Maybe make a class
 		
 	}
 	
-	public void turn() {
-		
+	public abstract void turn() {
+		//Check if battle is ready to send off values
+		//if so, grab value, set readyState of batlle to unset,
+		//and process
 	}
 	
 	public int getHealth() {
 		return health;
+	}
+
+	public void reset(){
+		//TODO
+		return;
 	}
 
 }
