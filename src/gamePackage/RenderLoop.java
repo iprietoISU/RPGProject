@@ -13,7 +13,7 @@ import javafx.scene.text.FontWeight;
 
 import java.util.Random;
 
-public class GameLoop extends AnimationTimer {
+public class RenderLoop extends AnimationTimer {
 	
 	private GraphicsContext ctx;
 	private Random rng;
@@ -21,8 +21,18 @@ public class GameLoop extends AnimationTimer {
 	private Bloom bloomEffect;
 	private int frameCount;
 	public Image test1;
-	public GameLoop(GraphicsContext inCtx, Canvas inScr) {
+	private DisplayMode currentMode;
+
+	public enum DisplayMode{
+		MODE_OVERWORLD,
+		MODE_BATTLE
+	}
+
+	
+
+	public RenderLoop(GraphicsContext inCtx, Canvas inScr) {
 		super();
+		currentMode = DisplayMode.MODE_OVERWORLD;
 		ctx = inCtx;
 		screen = inScr;
 		rng = new Random();
@@ -43,10 +53,33 @@ public class GameLoop extends AnimationTimer {
 		ctx.setFill(Color.BLACK);
         ctx.fillRect(0, 0, Math.min(frameCount, 640), 480);
         ctx.stroke();
-        
-        
+
+		//IDEA: Have a switch/case thing to do rendering
+        switch (currentMode) {
+			case MODE_OVERWORLD:
+				
+				//Alec, your per-frame rendering code will go here
+
+				break;
+
+			case MODE_BATTLE:
+
+				//Draw BG
+				//Draw Characters
+				//Advance character frame
+				//Draw BattleUI
+
+				break;
+		
+			default:
+				//throw new IllegalStateException("");
+		}
 
 
+	}
+
+	public void setMode(DisplayMode mode){
+		currentMode = mode;
 	}
 
 }

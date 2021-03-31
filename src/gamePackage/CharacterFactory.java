@@ -4,7 +4,7 @@ public class CharacterFactory {
 	enum characters{
 		
 	}
-	static GameCharacter createCharacter(characters character, boolean AIenabled) {
+	static BattleCharacter createCharacter(characters character, boolean AIenabled) {
 		return null;
 	}
 }
