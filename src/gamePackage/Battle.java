@@ -22,20 +22,21 @@ public class Battle {
 	}
 	
 	private void checkWL() {
+		lost = true;
 		for(u = 0; u < blufor.getCharactersInParty(); u++) {
 			if(blufor.getCharacter(u).getHealth() > 0) {
-				loss = true;
-				break;
+				lost = false;
+				return;
 			}
 		}
-		
-		if(wl) {
+		if(lost){
 			return;
 		}
 		
+		won = true;
 		for(u = 0; u < opfor.getCharactersInParty(); u++) {
 			if(opfor.getCharacter(u).getHealth() > 0) {
-				won = true;
+				won = false;
 				break;
 			}
 		}
