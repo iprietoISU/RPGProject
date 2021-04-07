@@ -33,10 +33,12 @@ public abstract class BattleCharacter { //Maybe make a class
 		
 	}
 	
-	public abstract void turn();
+	public void turn(){
 		//Check if battle is ready to send off values
 		//if so, grab value, set readyState of batlle to unset,
 		//and process
+	}
+		
 	
 	public int getHealth() {
 		return health;
