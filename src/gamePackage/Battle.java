@@ -13,7 +13,8 @@ public class Battle {
 	public Battle(Party blu, Party op) {
 		blufor = blu;
 		opfor = op;
-		wl = false;
+		won = false;
+		lost = false;
 		optionConfirmed = false;
 	}
 	
