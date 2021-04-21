@@ -29,6 +29,9 @@ public class RenderLoop extends AnimationTimer {
 
 	private Image dialogBoxBackground;
 
+	private int cameraOffsetX;
+	private int cameraOffsetY;
+
 	public enum DisplayMode{
 		MODE_OVERWORLD,
 		MODE_MENU
@@ -66,7 +69,9 @@ public class RenderLoop extends AnimationTimer {
 			case MODE_OVERWORLD:
 				for(OverWorldEntity layer : renderLayers){
 					//Place each layer down like a celluloid
-					ctx.drawImage(layer.getCurrentFrame(), layer.getX() - (layer.getCurrentFrame().getWidth()/2), layer.getY()  - (layer.getCurrentFrame().getHeight()/2));
+					int xpos = layer.getX() - (((int)layer.getCurrentFrame().getWidth())/2) + cameraOffsetX;
+					int ypos = layer.getY() - (((int)layer.getCurrentFrame().getHeight())/2) + cameraOffsetY;
+					ctx.drawImage(layer.getCurrentFrame(), xpos, ypos);
 				}
 
 				if(isDialogOpen){
@@ -111,6 +116,11 @@ public class RenderLoop extends AnimationTimer {
 
 	public void setDialogText(String text){
 		dialogText = text;
+	}
+
+	public void setCameraOffsets(int x, int y){
+		cameraOffsetX = x;
+		cameraOffsetY = y;
 	}
 
 }
