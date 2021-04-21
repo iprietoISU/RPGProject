@@ -10,10 +10,12 @@ public class PlayerEntity extends OverWorldEntity {
         graphics = graphicsHook;
     }
 
+    @Override
     public void perTurn(){
 
     }
 
+    @Override
     public Image getCurrentFrame(){
         return null;
     }
