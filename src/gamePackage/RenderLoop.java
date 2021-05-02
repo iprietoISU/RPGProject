@@ -9,12 +9,16 @@ import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.Bloom;
 
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.util.LinkedList;
 import java.util.Random;
 
 public class RenderLoop extends AnimationTimer {
+
+	private final int MID_X = 320;
+    private final int MID_Y = 240;
 	
 	private GraphicsContext ctx;
 	private Random rng;
@@ -31,6 +35,8 @@ public class RenderLoop extends AnimationTimer {
 
 	private int cameraOffsetX;
 	private int cameraOffsetY;
+
+	private int cx1,cx2,cy1,cy2;
 
 	public enum DisplayMode{
 		MODE_OVERWORLD,
@@ -53,6 +59,11 @@ public class RenderLoop extends AnimationTimer {
 		ctx.setGlobalBlendMode(BlendMode.SRC_OVER);
 		ctx.setTextBaseline(VPos.TOP);
 		ctx.setFont(new Font("MS Reference Sans Serif", 24));
+		cx1 = 0;
+		cy1 = 0;
+		cx2 = 0;
+		cy2 = 0;
+
 
 		renderLayers = new LinkedList<OverWorldEntity>();
 		
@@ -69,8 +80,8 @@ public class RenderLoop extends AnimationTimer {
 			case MODE_OVERWORLD:
 				for(OverWorldEntity layer : renderLayers){
 					//Place each layer down like a celluloid
-					int xpos = layer.getX() - (((int)layer.getCurrentFrame().getWidth())/2) + cameraOffsetX;
-					int ypos = layer.getY() - (((int)layer.getCurrentFrame().getHeight())/2) + cameraOffsetY;
+					int xpos = layer.getX() - cameraOffsetX + MID_X;
+					int ypos = layer.getY() - cameraOffsetY + MID_Y;
 					ctx.drawImage(layer.getCurrentFrame(), xpos, ypos);
 				}
 
@@ -78,6 +89,11 @@ public class RenderLoop extends AnimationTimer {
 					ctx.drawImage(dialogBoxBackground, 0, 380);
 					ctx.fillText(dialogText, 8, 388, 632);
 				}
+
+				ctx.setFill(Color.RED);
+
+				ctx.fillRect(cx1 - cameraOffsetX + MID_X ,cy1 - cameraOffsetY + MID_Y,cx2-cx1,cy2-cy1);
+				ctx.setFill(Color.BLACK);
 
 				break;
 
@@ -121,6 +137,13 @@ public class RenderLoop extends AnimationTimer {
 	public void setCameraOffsets(int x, int y){
 		cameraOffsetX = x;
 		cameraOffsetY = y;
+	}
+
+	public void setInstaBox(int x1, int y1, int x2, int y2){
+		cx1 = x1;
+		cy1 = y1;
+		cx2 = x2;
+		cy2 = y2;
 	}
 
 }

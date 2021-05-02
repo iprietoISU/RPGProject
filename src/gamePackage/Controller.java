@@ -54,6 +54,7 @@ public class Controller {
                 gameLogic.doStep(logicFrameCount);
 
 
+
                 while (System.currentTimeMillis() - timeSinceLogicStart < 17) {
                     // Waiting...
                 }
