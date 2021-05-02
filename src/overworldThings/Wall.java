@@ -12,7 +12,7 @@ public class Wall extends Collidable {
 
     @Override
     public void collisionLogic(Direction collisionDirection) {
-         spriteImage = new Image(this.getClass().getResource("BoxPushable.png").toExternalForm());
+         //spriteImage = new Image(this.getClass().getResource("BoxPushable.png").toExternalForm());
         
     }
 
